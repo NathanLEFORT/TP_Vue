@@ -1,10 +1,18 @@
 <template>
-
+  <div>
+    <Configuration/>
+    <Recherche/>
+    <Stats/>
+  </div>
 </template>
 
 <script>
+import Configuration from "@/components/Configuration";
+import Recherche from "@/components/Recherche";
+import Stats from "@/components/Stats";
 export default {
-  name: "Configuration"
+  name: "App",
+  components: {Configuration, Stats, Recherche}
 }
 </script>
 
