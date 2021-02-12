@@ -6,6 +6,8 @@
 export default {
 name: "Configuration"
 }
+
+
 </script>
 
 <style scoped>
