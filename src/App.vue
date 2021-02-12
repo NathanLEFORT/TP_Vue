@@ -2,9 +2,9 @@
   <div>
     <div>
     </div>
-    <Configuration/>
-    <Recherche/>
-    <Stats/>
+    <Configuration v-bind:books="booksPresent"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
+    <Recherche v-bind:utils="sortTable"/>
+    <Stats v-bind:utils="sortTable"/>
   </div>
 </template>
 
@@ -13,7 +13,7 @@
 import Configuration from "@/components/Configuration";
 import Recherche from "@/components/Recherche";
 import Stats from "@/components/Stats";
-import {sortTable, bookUsed, bookTable} from "../public/data.min.js";
+import {sortTable} from "../public/data.min.js";
 
 export default {
   name: "App",
@@ -21,13 +21,17 @@ export default {
   data () {
     return {
       sortTable: sortTable,
-      bookUsed: bookUsed,
-      bookTable: bookTable
+      booksPresent: []
     }
+  },
+  mounted() { // Seul endroit où est censés executer du JS
+    sortTable.forEach(sort => {
+      if(!this.booksPresent.includes(sort[0])) this.booksPresent.push(sort[0]); //Stocke les noms de livres dans booksPresent
+    });
   }
 }
 
-console.log(sortTable[0]);
+
 </script>
 
 <style>
