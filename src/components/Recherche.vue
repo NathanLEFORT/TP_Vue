@@ -1,16 +1,14 @@
 <template>
   <div>
     <h1>Recherche</h1>
-    <Table v-bind:sorts = "utils"/>
+    <h2>{{utils[0][1]}}</h2>
   </div>
 </template>
 
 <script>
-import Table from "@/components/Table";
 export default {
   name: "Recherche",
-  props : ['utils'],
-  components : {Table}
+  props : ['utils']
 }
 </script>
 
