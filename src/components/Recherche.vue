@@ -1,13 +1,13 @@
 <template>
   <div>
     <h1>Recherche</h1>
-    <select v-model="getSpells" id="resultsSize">
-      <option value="50">50</option>
-      <option value="1O0">100</option>
-      <option value="500">500</option>
-      <option value="1000">1000</option>
+    <select id="resultsSize" v-model="size" v-on:change="getSpells()">
+      <option value='50'>50</option>
+      <option value='100'>100</option>
+      <option value='500'>500</option>
+      <option value='1000'>1000</option>
     </select>
-    <Table v-bind:sorts="spells"/>
+    <Table v-bind:sorts="utils"/>
   </div>
 </template>
 
@@ -19,24 +19,23 @@ export default {
   components : {Table},
   data(){
     return{
-      spells : [],
-      size : 50,
-      s : []
+      size : '50'
     }
   },
+
   mounted() {
-    this.getSpells();
-    this.s.forEach(spell => {
-      if (sessionStorage.getItem(spell[0]) != null) this.spells.push(spell);
-    });
+    document.querySelector('#resultsSize').value = this.size;
   },
-  methods: {
+  methods : {
     getSpells(){
-      let newSize = document.querySelector('#resultsSize').value;
-      if(this.size != newSize) {
-        this.size = newSize;
-        this.s = this.$parent.getSpells(this.size);
-      }
+      console.log(this.size);
+      this.$parent.getSpells(this.size);
+      console.log(this.utils);
+    }
+  },
+  watch: {
+    size: (newVal, oldVal) => { // watch it
+      console.log('Result changed: ', newVal, ' | was: ', oldVal);
     }
   }
 }
