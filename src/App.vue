@@ -28,6 +28,10 @@ export default {
     sortTable.forEach(sort => {
       if(!this.booksPresent.includes(sort[0])) this.booksPresent.push(sort[0]); //Stocke les noms de livres dans booksPresent
     });
+
+  },
+  methods : {
+
   }
 }
 
