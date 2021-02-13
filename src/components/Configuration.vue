@@ -16,15 +16,6 @@ export default {
   components: {SelectLivre},
   props:['books'], //Sert à récupérer books (booksPresent) donnés par App.vue
 
-  // mounted() {
-  //   this.books.forEach(book => {
-  //     if(sessionStorage.getItem(book) !== '0') {
-  //       sessionStorage.setItem(book, '1');
-  //     } else {
-  //       sessionStorage.setItem(book, '0');
-  //     }
-  //   });
-  // }
 }
 
 </script>

@@ -1,7 +1,11 @@
 <template>
   <div>
-    <input v-model="select" type="checkbox" v-on:click="setSelect()"/>
-    <a>{{ book }}</a>
+    <label>
+      <!-- la ckeckbox de sélection du livre -->
+      <input v-model="isSelect" type="checkbox" v-on:click="setSelect()"/>
+    </label>
+    <!-- affichage du nom du livre -->
+    <a>{{ this.book }}</a>
   </div>
 </template>
 
@@ -11,19 +15,15 @@ export default {
   props:['book'],
   data() {
     return {
-      select: false
+      isSelect: false
     }
   },
   mounted() {
-    if(sessionStorage.getItem(this.book) !== null) {
-      this.select = true;
-    } else {
-      this.select = false;
-    }
+    this.isSelect = sessionStorage.getItem(this.book) !== null; // initialisation de isSelect  depuis la session
   },
   methods: {
-    setSelect() {
-      if(this.select) {
+    setSelect() { // mise à jour des données de la session lors de la modification de isSelect
+      if(this.isSelect) {
         sessionStorage.removeItem(this.book);
       } else {
         sessionStorage.setItem(this.book, 'true');
