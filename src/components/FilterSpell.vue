@@ -1,15 +1,17 @@
 <template>
   <div>
-    <LineFilter></LineFilter>
+    <SelectLineFilter v-bind:name="'class'" v-bind:values="spellsClasses"></SelectLineFilter>
+    <SelectLineFilter v-bind:name="'school'" v-bind:values="spellsSchools"></SelectLineFilter>
+    <SelectLineFilter v-bind:name="'branch'" v-bind:values="spellsBranches"></SelectLineFilter>
   </div>
 </template>
 
 <script>
-import LineFilter from "@/components/LineFilter";
+import SelectLineFilter from "@/components/SelectLineFilter";
 export default {
   name: "FilterSpell",
-  components: {LineFilter},
-  props: ['spellsClasses', 'spellsSchools', 'spellsBranches']
+  components: {SelectLineFilter},
+  props: ['spellsClasses', 'spellsSchools', 'spellsBranches'],
 }
 </script>
 
