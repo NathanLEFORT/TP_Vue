@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <label> {{ this.name }}</label>
+  <div id="selectFilter">
+    <label id="select"> {{ this.name }}</label>
     <label>
       <select v-model="filter">
           <option selected value="" hidden disabled></option>
@@ -30,5 +30,10 @@ export default {
 </script>
 
 <style scoped>
-
+#selectFilter {
+  margin: 20px;
+}
+#select {
+  margin-right: 10px;
+}
 </style>
