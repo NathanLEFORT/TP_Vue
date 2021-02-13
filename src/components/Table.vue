@@ -1,25 +1,21 @@
 <template>
   <div>
     <table>
-      <TableLine v-bind:sort="sort"/>
+      <TableHead />
+      <tbody>
+        <TableLine v-for="sort in sorts" :key="sort[1]" v-bind:sort="sort"/>
+      </tbody>
     </table>
   </div>
 </template>
 
 <script>
+import TableHead from "@/components/TableHead";
 import TableLine from "@/components/TableLine";
 export default {
 name: "Table",
   props : ['sorts'],
-  components : {TableLine},
-  data() {
-    return{
-      sort: []
-    }
-  },
-  mounted() {
-    this.sort=this.sorts[0];
-  }
+  components : {TableLine, TableHead}
 }
 </script>
 
