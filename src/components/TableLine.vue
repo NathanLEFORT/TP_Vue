@@ -1,8 +1,6 @@
 <template>
   <tr>
-    <td>{{sort[0]}}</td>
-    <td>{{sort[1]}}</td>
-    <td>{{sort[2]}}</td>
+    <td v-for="index in (1,11)" :key="index">{{sort[index]}}</td>
   </tr>
 </template>
 
