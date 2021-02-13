@@ -1,12 +1,15 @@
 <template>
   <div>
     <h1>Recherche</h1>
-    <select id="resultsSize" v-model="size" v-on:change="getSpells()">
-      <option value='50'>50</option>
-      <option value='100'>100</option>
-      <option value='500'>500</option>
-      <option value='1000'>1000</option>
-    </select>
+    <div>
+      <select id="resultsSize" v-model="size" v-on:change="getSpells(1)">
+        <option value='50'>50</option>
+        <option value='100'>100</option>
+        <option value='500'>500</option>
+        <option value='1000'>1000</option>
+      </select>
+      <p v-for="page in (1, nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></p>
+    </div>
     <Table v-bind:sorts="utils"/>
   </div>
 </template>
@@ -15,7 +18,7 @@
 import Table from "@/components/Table";
 export default {
   name: "Recherche",
-  props : ['utils'],
+  props : ['utils','nbPages'],
   components : {Table},
   data(){
     return{
@@ -25,12 +28,12 @@ export default {
 
   mounted() {
     document.querySelector('#resultsSize').value = this.size;
+    console.log(this.nbPages);
   },
   methods : {
-    getSpells(){
-      console.log(this.size);
-      this.$parent.getSpells(this.size);
-      console.log(this.utils);
+    getSpells(page=0){
+      console.log(page);
+      this.$parent.getSpells(this.size, (page-1)*this.size);
     }
   },
   watch: {
@@ -42,5 +45,11 @@ export default {
 </script>
 
 <style scoped>
-
+p{
+  display:inline;
+  margin: 5px;
+}
+a {
+  color:blue;
+}
 </style>
