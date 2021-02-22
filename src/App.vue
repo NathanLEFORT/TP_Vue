@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid m-4">
     <div class="row">
-      <div class="col-2">
+      <div class="col-1">
         <NavBar></NavBar>
       </div>
-      <div class="col-10">
+      <div class="col-11">
         <Configuration v-if="this.isConfiguration" v-bind:books="booksPresent"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
         <Recherche v-else-if="this.isSearch" v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable"/>
         <Stats v-else-if="this.isStats" v-bind:utils="sortTable"/>

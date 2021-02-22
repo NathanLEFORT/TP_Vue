@@ -2,13 +2,9 @@
   <li class="list-group-item">
     <div class="row">
       <div class="col-1">
-        <!--  la ckeckbox de sélection du livre -->
         <input class="form-check-input" v-model="isSelect" type="checkbox" v-on:click="setSelect()"/>
       </div>
-      <div class="col-11">
-        <!-- affichage du nom du livre -->
-        {{ this.book }}
-      </div>
+      <div class="col-11">{{ this.book }}</div>
     </div>
   </li>
 </template>
@@ -32,6 +28,9 @@ export default {
       } else {
         sessionStorage.setItem(this.book, 'true');
       }
+      this.$parent.$parent.getBooks();
+      this.$parent.$parent.getSpellsFromBooks();
+      this.$parent.$parent.getSpells(50,0);
     }
   }
 }

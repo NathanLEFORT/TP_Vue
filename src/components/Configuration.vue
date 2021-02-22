@@ -1,9 +1,7 @@
 <template>
     <div class="col-3">
       <div class="card">
-        <div class="card-header">
-          Configuration
-        </div>
+        <div class="card-header">Configuration</div>
         <div class="card-body">
           <ul class="list-group">
               <!-- key est nécessaire avec un v-for, pas donné dans son cours -->

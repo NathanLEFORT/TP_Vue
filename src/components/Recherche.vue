@@ -1,25 +1,32 @@
 <template>
   <div>
+    <div class="row">
       <div class="col-3">
         <div class="card">
-          <div class="card-header">Recherche</div>
+          <div class="card-header">Search</div>
           <div class="card-body">
             <FilterSpell v-bind:spellsClasses="spellsClasses" v-bind:spellsSchools="spellsSchools" v-bind:spellsBranches="spellsBranches"></FilterSpell>
           </div>
         </div>
       </div>
+    </div>
 
-      <div>
-        <select id="resultsSize" v-model="size" v-on:change="getSpells(1)">
+    <div class="row">
+      <div class="col-3">
+        <select class="form-select" id="resultsSize" v-model="size" v-on:change="getSpells(1)">
           <option value='50'>50</option>
           <option value='100'>100</option>
           <option value='500'>500</option>
           <option value='1000'>1000</option>
         </select>
-        <p v-for="page in (1, nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></p>
+      </div>
+      <div class="col-9">
+        <div class="btn-group" role="group"></div>
       </div>
       <Table v-bind:sorts="utils"/>
+    </div>
   </div>
+
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <table>
-      <TableHead />
+    <table class="table table-striped">
+      <TableHead/>
       <tbody>
         <TableLine v-for="sort in sorts" :key="sort[1]" v-bind:sort="sort"/>
       </tbody>
