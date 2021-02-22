@@ -2,7 +2,7 @@
   <div id="textFilter">
     <label id="text"> {{ this.name }}</label>
     <label>
-      <input v-model="this.filter">
+      <input v-model="filter" v-on:change="update">
     </label>
   </div>
 
@@ -11,10 +11,15 @@
 <script>
 export default {
 name: "TextLineFilter",
-  props: ['name'],
+  props: ['name', 'index'],
   data() {
-  return {
-      filter: null
+    return {
+      filter : ""
+    }
+  },
+  methods : {
+    update(){
+      this.$parent.modifyFilter(this.index, this.filter);
     }
   }
 }

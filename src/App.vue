@@ -23,6 +23,7 @@ export default {
       sortTable: sortTable,
       booksPresent: [],
       spells : [],
+      spellsFiltered : [],
       spellsKept : [],
       nbPages : 0
     }
@@ -36,38 +37,41 @@ export default {
     getSpells(size, offset, filters=null){
       if(filters==null){
         this.spellsKept = this.spells.slice(offset,offset+size); //Garde les sorts de la liste à afficher
+        this.nbPages=Math.ceil(this.spells.length / size);
       }
       else {
+        console.log(filters);
         let name = filters[0];
         let level = filters[1];
         let classes = filters[2];
         let school = filters[3];
         let branch = filters[4];
-
-        this.spellsKept = this.getFiltered(name, level, classes, school, branch).slice(offset, offset+size);
+        this.spellsFiltered=this.getFiltered(name, level, classes, school, branch);
+        this.spellsKept = this.spellsFiltered.slice(offset, offset+size);
+        this.nbPages=Math.ceil(this.spellsFiltered.length / size);
       }
-      this.nbPages=Math.ceil(this.spells.length / size);
       console.log(this.nbPages);
     },
 
     getFiltered(name, level, classes, school, branch){
       let filteredSpells=[];
 
-      this.spells.foreach(spell => {
+      this.spells.forEach(spell => {
         let add = true;
+
         if(classes!=null){
           add = this.verifySpellClassAndLevel(spell[4], classes, level);
         }
-        else if (level!=null){
+        else if (level!=null && level!=""){
           add = this.verifySpellLevel(spell[4], level);
         }
 
-        if(add && name!=null){
+        if(add && name!=null && name!=""){
           add = spell[1]==name;
         }
 
         if(add && school!=null){
-          add = spell[2]==name;
+          add = spell[2]==school;
         }
 
         if(add && branch!=null){
@@ -83,23 +87,18 @@ export default {
     },
 
     verifySpellClassAndLevel(spellClass, classes, level){
-      let spellClasses = [];
+      let found = false;
       spellClass.forEach(double =>{
-        spellClasses.push(double[0]);
+        if(double[0]===classes){
+          if(level!=null && level!="" && double[1].toString()!==level.toString()) {
+            found = false;
+          }
+          else {
+            found = true;
+          }
+        }
       });
-
-      if(spellClass.contains(classes)){
-        let ind = spellClass.indexOf(classes);
-        if(level!=null && spellClass[ind][1]!==level){
-          return false;
-        }
-        else {
-          return true
-        }
-      }
-      else {
-        return false;
-      }
+      return found;
     },
 
     verifySpellLevel(spellClass, level){
