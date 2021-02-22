@@ -53,8 +53,11 @@ export default {
   },
   methods : {
     getSpells(page=0){
-      console.log(page);
       this.$parent.getSpells(this.size, (page-1)*this.size);
+    },
+
+    getFilteredSpells(filters){
+      this.$parent.getSpells(this.size, 0, filters);
     }
   },
   watch: {

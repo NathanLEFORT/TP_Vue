@@ -30,13 +30,86 @@ export default {
   mounted() { // Seul endroit où est censés executer du JS
     this.getBooks();
     this.getSpellsFromBooks();
-    this.getSpells(50);
+    this.getSpells(50,0);
   },
   methods : {
-    getSpells(size, offset=0){
-      this.spellsKept = this.spells.slice(offset,offset+size); //Garde les sorts de la liste à afficher
+    getSpells(size, offset, filters=null){
+      if(filters==null){
+        this.spellsKept = this.spells.slice(offset,offset+size); //Garde les sorts de la liste à afficher
+      }
+      else {
+        let name = filters[0];
+        let level = filters[1];
+        let classes = filters[2];
+        let school = filters[3];
+        let branch = filters[4];
+
+        this.spellsKept = this.getFiltered(name, level, classes, school, branch).slice(offset, offset+size);
+      }
       this.nbPages=Math.ceil(this.spells.length / size);
       console.log(this.nbPages);
+    },
+
+    getFiltered(name, level, classes, school, branch){
+      let filteredSpells=[];
+
+      this.spells.foreach(spell => {
+        let add = true;
+        if(classes!=null){
+          add = this.verifySpellClassAndLevel(spell[4], classes, level);
+        }
+        else if (level!=null){
+          add = this.verifySpellLevel(spell[4], level);
+        }
+
+        if(add && name!=null){
+          add = spell[1]==name;
+        }
+
+        if(add && school!=null){
+          add = spell[2]==name;
+        }
+
+        if(add && branch!=null){
+          add = spell[3]==branch;
+        }
+
+        if(add==true){ // If all criteria are respected we add the spell to the list
+          filteredSpells.push(spell);
+        }
+      });
+
+      return filteredSpells;
+    },
+
+    verifySpellClassAndLevel(spellClass, classes, level){
+      let spellClasses = [];
+      spellClass.forEach(double =>{
+        spellClasses.push(double[0]);
+      });
+
+      if(spellClass.contains(classes)){
+        let ind = spellClass.indexOf(classes);
+        if(level!=null && spellClass[ind][1]!==level){
+          return false;
+        }
+        else {
+          return true
+        }
+      }
+      else {
+        return false;
+      }
+    },
+
+    verifySpellLevel(spellClass, level){
+        let spellLevel = false;
+        spellClass.forEach(double =>{
+          if(double[1]===level) {
+            spellLevel = true;
+          }
+        });
+        return spellLevel;
     },
 
     getSpellsFromBooks(){
