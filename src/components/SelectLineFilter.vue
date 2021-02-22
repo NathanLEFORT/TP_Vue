@@ -2,7 +2,7 @@
   <div id="selectFilter">
     <label id="select"> {{ this.name }}</label>
     <label>
-      <select v-model="filter">
+      <select v-model="filter" v-on:change="modifyFilter(index, values)">
           <option selected value="" hidden disabled></option>
           <option v-for="item in this.values" :key="item"> {{ item }}</option>
       </select>
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "SelectLineFilter",
-  props: ['name', 'values'],
+  props: ['name', 'values', 'index'],
   data() {
     return {
       filter: null
@@ -24,6 +24,9 @@ export default {
   methods: {
     resetFilter() {
       this.filter = null;
+    },
+    modifyFilter() {
+      this.$parent.modifyFilter(this.index, this.filter);
     }
   }
 }
