@@ -1,11 +1,15 @@
 <template>
-  <div>
-    <h1>Stats</h1>
-    <ul>
-      <li>Nombre de sorts : {{nbSorts}}</li>
-      <li>Nombre de livres : {{nbLivres}}</li>
-      <li>Nombre de sorts moyen : {{nbMoySorts}}</li>
-    </ul>
+  <div class="col-3">
+    <div class="card">
+      <div class="card-header">Stats</div>
+      <div class="card-body">
+        <ul>
+          <li>Nombre de sorts : {{nbSorts}}</li>
+          <li>Nombre de livres : {{nbLivres}}</li>
+          <li>Nombre de sorts moyen : {{nbMoySorts}}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

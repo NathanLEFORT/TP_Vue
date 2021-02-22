@@ -1,21 +1,15 @@
 <template>
-  <div>
-    <div>
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <button class="btn btn-primary" v-on:click="enableConfiguration()">Configuration</button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-primary" v-on:click="enableSearch()">Search</button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-primary" v-on:click="enableStats()">Stats</button>
-        </li>
-      </ul>
+  <div class="container-fluid m-4">
+    <div class="row">
+      <div class="col-2">
+        <NavBar></NavBar>
+      </div>
+      <div class="col-10">
+        <Configuration v-if="this.isConfiguration" v-bind:books="booksPresent"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
+        <Recherche v-else-if="this.isSearch" v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable"/>
+        <Stats v-else-if="this.isStats" v-bind:utils="sortTable"/>
+      </div>
     </div>
-    <Configuration v-if="this.isConfiguration" v-bind:books="booksPresent"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
-    <Recherche v-if="this.isSearch" v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable"/>
-    <Stats v-if="this.isStats" v-bind:utils="sortTable"/>
   </div>
 </template>
 
@@ -25,10 +19,11 @@ import Configuration from "@/components/Configuration";
 import Recherche from "@/components/Recherche";
 import Stats from "@/components/Stats";
 import {sortTable} from "../public/data.min.js";
+import NavBar from "@/components/NavBar";
 
 export default {
   name: "App",
-  components: {Configuration, Stats, Recherche},
+  components: {NavBar, Configuration, Stats, Recherche},
   data () {
     return {
       sortTable: sortTable,
@@ -132,23 +127,6 @@ export default {
         if (!this.booksPresent.includes(spell[0])) this.booksPresent.push(spell[0]); //Garde les sorts uniquements des livres selectionnés
       });
     },
-
-    enableConfiguration() {
-      this.isConfiguration = true;
-      this.isSearch = false;
-      this.isStats = false;
-    },
-    enableSearch() {
-      this.isConfiguration = false;
-      this.isSearch = true;
-      this.isStats = false;
-    },
-    enableStats() {
-      this.isConfiguration = false;
-      this.isSearch = false;
-      this.isStats = true;
-    }
-
   }
 }
 

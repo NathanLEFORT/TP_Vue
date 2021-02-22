@@ -1,6 +1,4 @@
 <template>
-  <div class="container-fluid">
-
     <div class="col-3">
       <div class="card">
         <div class="card-header">
@@ -14,7 +12,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div class="container-fluid">
-
       <div class="col-3">
         <div class="card">
           <div class="card-header">Recherche</div>
@@ -10,8 +8,6 @@
           </div>
         </div>
       </div>
-
-    </div>
 
       <div>
         <select id="resultsSize" v-model="size" v-on:change="getSpells(1)">
