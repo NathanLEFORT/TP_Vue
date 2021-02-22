@@ -1,10 +1,21 @@
 <template>
   <div>
     <div>
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <button class="btn btn-primary" v-on:click="enableConfiguration()">Configuration</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" v-on:click="enableSearch()">Search</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary" v-on:click="enableStats()">Stats</button>
+        </li>
+      </ul>
     </div>
-    <Configuration v-bind:books="booksPresent"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
-    <Recherche v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable"/>
-    <Stats v-bind:utils="sortTable"/>
+    <Configuration v-if="this.isConfiguration" v-bind:books="booksPresent"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
+    <Recherche v-if="this.isSearch" v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable"/>
+    <Stats v-if="this.isStats" v-bind:utils="sortTable"/>
   </div>
 </template>
 
@@ -24,7 +35,10 @@ export default {
       booksPresent: [],
       spells : [],
       spellsKept : [],
-      nbPages : 0
+      nbPages : 0,
+      isConfiguration: true,
+      isSearch: false,
+      isStats: false
     }
   },
   mounted() { // Seul endroit où est censés executer du JS
@@ -117,7 +131,24 @@ export default {
       this.sortTable.forEach(spell => {
         if (!this.booksPresent.includes(spell[0])) this.booksPresent.push(spell[0]); //Garde les sorts uniquements des livres selectionnés
       });
+    },
+
+    enableConfiguration() {
+      this.isConfiguration = true;
+      this.isSearch = false;
+      this.isStats = false;
+    },
+    enableSearch() {
+      this.isConfiguration = false;
+      this.isSearch = true;
+      this.isStats = false;
+    },
+    enableStats() {
+      this.isConfiguration = false;
+      this.isSearch = false;
+      this.isStats = true;
     }
+
   }
 }
 

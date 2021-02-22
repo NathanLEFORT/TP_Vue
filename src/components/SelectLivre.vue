@@ -1,12 +1,16 @@
 <template>
-  <div>
-    <label>
-      <!-- la ckeckbox de sélection du livre -->
-      <input v-model="isSelect" type="checkbox" v-on:click="setSelect()"/>
-    </label>
-    <!-- affichage du nom du livre -->
-    <a>{{ this.book }}</a>
-  </div>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-1">
+        <!--  la ckeckbox de sélection du livre -->
+        <input class="form-check-input" v-model="isSelect" type="checkbox" v-on:click="setSelect()"/>
+      </div>
+      <div class="col-11">
+        <!-- affichage du nom du livre -->
+        {{ this.book }}
+      </div>
+    </div>
+  </li>
 </template>
 
 <script>

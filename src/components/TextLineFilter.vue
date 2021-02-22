@@ -1,11 +1,12 @@
 <template>
-  <div id="textFilter">
-    <label id="text"> {{ this.name }}</label>
-    <label>
-      <input v-model="this.filter">
-    </label>
+  <div class="row">
+    <div class="col-9">
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm"> {{ this.name }} </span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" v-model="this.filter">
+      </div>
+    </div>
   </div>
-
 </template>
 
 <script>
@@ -21,10 +22,4 @@ name: "TextLineFilter",
 </script>
 
 <style scoped>
-#textFilter {
-  margin: 20px;
-}
-#text {
-  margin-right: 10px;
-}
 </style>

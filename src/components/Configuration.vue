@@ -1,10 +1,19 @@
 <template>
-  <div>
-    <h1>Configuration</h1>
-    <ul>
-      <!-- key est nécessaire avec un v-for, pas donné dans son cours -->
-      <SelectLivre v-for="book in books" :key="book" v-bind:book = "book"></SelectLivre> <!-- Test d'affichage des noms de livres récupérés depuis App.vue -->
-    </ul>
+  <div class="container-fluid">
+
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header">
+          Configuration
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+              <!-- key est nécessaire avec un v-for, pas donné dans son cours -->
+              <SelectLivre v-for="book in books" :key="book" v-bind:book = "book"></SelectLivre> <!-- Test d'affichage des noms de livres récupérés depuis App.vue -->
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

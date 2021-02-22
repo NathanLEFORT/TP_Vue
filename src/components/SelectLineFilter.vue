@@ -1,14 +1,17 @@
 <template>
-  <div id="selectFilter">
-    <label id="select"> {{ this.name }}</label>
-    <label>
-      <select v-model="filter" v-on:change="modifyFilter(index, values)">
+  <div class="row">
+    <div class="col-9">
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm"> {{ this.name }} </span>
+        <select class="form-select form-select-lg" v-model="filter" v-on:change="modifyFilter(index, values)">
           <option selected value="" hidden disabled></option>
           <option v-for="item in this.values" :key="item"> {{ item }}</option>
-      </select>
-    </label>
-    <button v-on:click="resetFilter()">reset</button>
-    <label>{{ this.filter }}</label>
+        </select>
+      </div>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-secondary" v-on:click="resetFilter()">reset</button>
+    </div>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ export default {
   methods: {
     resetFilter() {
       this.filter = null;
+      this.$parent.modifyFilter(this.index, this.filter);
     },
     modifyFilter() {
       this.$parent.modifyFilter(this.index, this.filter);
@@ -33,10 +37,4 @@ export default {
 </script>
 
 <style scoped>
-#selectFilter {
-  margin: 20px;
-}
-#select {
-  margin-right: 10px;
-}
 </style>
