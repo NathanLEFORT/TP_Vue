@@ -53,7 +53,7 @@ export default {
     getFiltered(name, level, classes, school, branch){
       let filteredSpells=[];
 
-      this.spells.foreach(spell => {
+      this.spells.forEach(spell => {
         let add = true;
         if(classes!=null){
           add = this.verifySpellClassAndLevel(spell[4], classes, level);
@@ -63,18 +63,18 @@ export default {
         }
 
         if(add && name!=null){
-          add = spell[1]==name;
+          add = spell[1]===name;
         }
 
         if(add && school!=null){
-          add = spell[2]==name;
+          add = spell[2]===name;
         }
 
         if(add && branch!=null){
-          add = spell[3]==branch;
+          add = spell[3]===branch;
         }
 
-        if(add==true){ // If all criteria are respected we add the spell to the list
+        if(add===true){ // If all criteria are respected we add the spell to the list
           filteredSpells.push(spell);
         }
       });
@@ -90,12 +90,7 @@ export default {
 
       if(spellClass.contains(classes)){
         let ind = spellClass.indexOf(classes);
-        if(level!=null && spellClass[ind][1]!==level){
-          return false;
-        }
-        else {
-          return true
-        }
+        return !(level != null && spellClass[ind][1] !== level);
       }
       else {
         return false;
@@ -130,12 +125,4 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
