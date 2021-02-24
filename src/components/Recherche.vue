@@ -11,7 +11,6 @@
     </div>
     <Table v-bind:sorts="utils"/>
   </div>
-
 </template>
 
 <script>
@@ -33,7 +32,6 @@ export default {
 
   mounted() {
     document.querySelector('#resultsSize').value = this.size;
-    console.log(this.nbPages);
 
     this.spells.forEach(spell => {
       if(this.spellsClasses.indexOf(spell[4][0][0]) === -1) {
@@ -56,11 +54,6 @@ export default {
 
     getFilteredSpells(filters){
       this.$parent.getSpells(this.size, 1, filters);
-    }
-  },
-  watch: {
-    size: (newVal, oldVal) => { // watch it
-      console.log('Result changed: ', newVal, ' | was: ', oldVal);
     }
   }
 }
