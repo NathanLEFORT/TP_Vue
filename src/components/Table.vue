@@ -15,7 +15,12 @@ import TableLine from "@/components/TableLine";
 export default {
 name: "Table",
   props : ['sorts'],
-  components : {TableLine, TableHead}
+  components : {TableLine, TableHead},
+  methods : {
+    showSpell(spell){
+      this.$parent.showSpell(spell);
+    }
+  }
 }
 </script>
 
