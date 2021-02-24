@@ -1,25 +1,8 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-3">
-        <div class="card">
-          <div class="card-header">Search</div>
-          <div class="card-body">
-            <FilterSpell v-bind:spellsClasses="spellsClasses" v-bind:spellsSchools="spellsSchools" v-bind:spellsBranches="spellsBranches"></FilterSpell>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <FilterSpell v-bind:spellsClasses="spellsClasses" v-bind:spellsSchools="spellsSchools" v-bind:spellsBranches="spellsBranches"></FilterSpell>
     <div class="row p-2">
-      <div class="col-3">
-        <select class="form-select" id="resultsSize" v-model="size" v-on:change="getSpells(1)">
-          <option value='50'>50</option>
-          <option value='100'>100</option>
-          <option value='500'>500</option>
-          <option value='1000'>1000</option>
-        </select>
-      </div>
+      <SelectNbPage v-bind:size="this.size"></SelectNbPage>
       <div class="col-9">
         <div class="btn-group" role="group">
           <button class="btn btn-primary" v-for="page in (nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></button>
@@ -34,10 +17,11 @@
 <script>
 import Table from "@/components/Table";
 import FilterSpell from "@/components/FilterSpell";
+import SelectNbPage from "@/components/SelectNbPage";
 export default {
   name: "Recherche",
   props : ['utils','nbPages', 'spells'],
-  components : {FilterSpell, Table},
+  components : {SelectNbPage, FilterSpell, Table},
   data(){
     return{
       size : '50',
