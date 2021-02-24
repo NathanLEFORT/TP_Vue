@@ -30,7 +30,7 @@ export default {
       }
       this.$parent.$parent.getBooks();
       this.$parent.$parent.getSpellsFromBooks();
-      this.$parent.$parent.getSpells(50,0);
+      this.$parent.$parent.getSpells(50,1);
     }
   }
 }
