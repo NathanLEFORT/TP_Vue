@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row p-2">
       <div class="col-3">
         <select class="form-select" id="resultsSize" v-model="size" v-on:change="getSpells(1)">
           <option value='50'>50</option>
@@ -22,11 +22,11 @@
       </div>
       <div class="col-9">
         <div class="btn-group" role="group">
-          <button class="btn btn-primary" v-for="page in (1, nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></button>
+          <button class="btn btn-primary" v-for="page in (nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></button>
         </div>
       </div>
-      <Table v-bind:sorts="utils"/>
     </div>
+    <Table v-bind:sorts="utils"/>
   </div>
 
 </template>
