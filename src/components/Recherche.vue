@@ -67,11 +67,11 @@ export default {
   },
   methods : {
     getSpells(page=0){
-      this.$parent.getSpells(this.size, (page-1)*this.size);
+      this.$parent.getSpells(this.size, page);
     },
 
     getFilteredSpells(filters){
-      this.$parent.getSpells(this.size, 0, filters);
+      this.$parent.getSpells(this.size, 1, filters);
     }
   },
   watch: {

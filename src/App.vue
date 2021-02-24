@@ -29,8 +29,10 @@ export default {
       sortTable: sortTable,
       booksPresent: [],
       spells : [],
+      spellsFiltered : [],
       spellsKept : [],
       nbPages : 0,
+      page : 1,
       isConfiguration: true,
       isSearch: false,
       isStats: false
@@ -39,23 +41,27 @@ export default {
   mounted() { // Seul endroit où est censés executer du JS
     this.getBooks();
     this.getSpellsFromBooks();
-    this.getSpells(50,0);
+    this.getSpells(50,1);
   },
   methods : {
-    getSpells(size, offset, filters=null){
+    getSpells(size, page, filters=null){
+      this.page=page;
+      let offset = (page-1)*size;
       if(filters==null){
         this.spellsKept = this.spells.slice(offset,offset+size); //Garde les sorts de la liste à afficher
+        this.nbPages=Math.ceil(this.spells.length / size);
       }
       else {
+        console.log(filters);
         let name = filters[0];
         let level = filters[1];
         let classes = filters[2];
         let school = filters[3];
         let branch = filters[4];
-
-        this.spellsKept = this.getFiltered(name, level, classes, school, branch).slice(offset, offset+size);
+        this.spellsFiltered=this.getFiltered(name, level, classes, school, branch);
+        this.spellsKept = this.spellsFiltered.slice(offset, offset+size);
+        this.nbPages=Math.ceil(this.spellsFiltered.length / size);
       }
-      this.nbPages=Math.ceil(this.spells.length / size);
       console.log(this.nbPages);
     },
 
@@ -64,26 +70,27 @@ export default {
 
       this.spells.forEach(spell => {
         let add = true;
+
         if(classes!=null){
           add = this.verifySpellClassAndLevel(spell[4], classes, level);
         }
-        else if (level!=null){
+        else if (level!=null && level!=""){
           add = this.verifySpellLevel(spell[4], level);
         }
 
-        if(add && name!=null){
-          add = spell[1]===name;
+        if(add && name!=null && name!=""){
+          add = spell[1]==name;
         }
 
         if(add && school!=null){
-          add = spell[2]===name;
+          add = spell[2]==school;
         }
 
         if(add && branch!=null){
-          add = spell[3]===branch;
+          add = spell[3]==branch;
         }
 
-        if(add===true){ // If all criteria are respected we add the spell to the list
+        if(add==true){ // If all criteria are respected we add the spell to the list
           filteredSpells.push(spell);
         }
       });
@@ -92,28 +99,28 @@ export default {
     },
 
     verifySpellClassAndLevel(spellClass, classes, level){
-      let spellClasses = [];
+      let found = false;
       spellClass.forEach(double =>{
-        spellClasses.push(double[0]);
+        if(double[0]===classes){
+          if(level!=null && level!="" && double[1].toString()!==level.toString()) {
+            found = false;
+          }
+          else {
+            found = true;
+          }
+        }
       });
-
-      if(spellClass.contains(classes)){
-        let ind = spellClass.indexOf(classes);
-        return !(level != null && spellClass[ind][1] !== level);
-      }
-      else {
-        return false;
-      }
+      return found;
     },
 
     verifySpellLevel(spellClass, level){
-        let spellLevel = false;
-        spellClass.forEach(double =>{
-          if(double[1]===level) {
-            spellLevel = true;
-          }
-        });
-        return spellLevel;
+      let spellLevel = false;
+      spellClass.forEach(double =>{
+        if(double[1]===level) {
+          spellLevel = true;
+        }
+      });
+      return spellLevel;
     },
 
     getSpellsFromBooks(){
@@ -126,7 +133,7 @@ export default {
       this.sortTable.forEach(spell => {
         if (!this.booksPresent.includes(spell[0])) this.booksPresent.push(spell[0]); //Garde les sorts uniquements des livres selectionnés
       });
-    },
+    }
   }
 }
 
