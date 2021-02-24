@@ -2,7 +2,7 @@
   <div>
     <FilterSpell v-bind:spellsClasses="spellsClasses" v-bind:spellsSchools="spellsSchools" v-bind:spellsBranches="spellsBranches"></FilterSpell>
     <div class="row p-2">
-      <SelectNbPage v-bind:size="this.size"></SelectNbPage>
+      <SelectNbPage v-bind:size="size"></SelectNbPage>
       <div class="col-9">
         <div class="btn-group" role="group">
           <button class="btn btn-primary" v-for="page in (nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></button>
@@ -54,6 +54,9 @@ export default {
 
     getFilteredSpells(filters){
       this.$parent.getSpells(this.size, 1, filters);
+    },
+    updateSize(size) {
+      this.size = size;
     }
   }
 }
