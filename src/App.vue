@@ -52,7 +52,6 @@ export default {
         this.nbPages=Math.ceil(this.spells.length / size);
       }
       else {
-        console.log(filters);
         let name = filters[0];
         let level = filters[1];
         let classes = filters[2];
@@ -62,7 +61,6 @@ export default {
         this.spellsKept = this.spellsFiltered.slice(offset, offset+size);
         this.nbPages=Math.ceil(this.spellsFiltered.length / size);
       }
-      console.log(this.nbPages);
     },
 
     getFiltered(name, level, classes, school, branch){
