@@ -77,7 +77,7 @@ export default {
         }
 
         if(add && name!=null && name!=""){
-          add = spell[1]==name;
+          add = spell[1].includes(name);
         }
 
         if(add && school!=null){
@@ -122,6 +122,7 @@ export default {
     },
 
     getSpellsFromBooks(){
+      this.spells = [];
       this.sortTable.forEach(spell => {
         if (sessionStorage.getItem(spell[0]) != null) this.spells.push(spell); //Garde les sorts uniquements des livres selectionnés
       });
