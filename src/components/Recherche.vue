@@ -21,7 +21,9 @@
         </select>
       </div>
       <div class="col-9">
-        <div class="btn-group" role="group"></div>
+        <div class="btn-group" role="group">
+          <button class="btn btn-primary" v-for="page in (1, nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></button>
+        </div>
       </div>
       <Table v-bind:sorts="utils"/>
     </div>
