@@ -12,7 +12,12 @@
 <script>
 export default {
   name: "TableLine",
-  props : ['sort']
+  props : ['sort'],
+  methods : {
+    open(){
+      this.$parent.showSpell(this.sort);
+    }
+  }
 }
 </script>
 
