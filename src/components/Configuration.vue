@@ -5,7 +5,7 @@
         <div class="card-body">
           <ul class="list-group">
               <!-- key est nécessaire avec un v-for, pas donné dans son cours -->
-              <SelectLivre v-for="book in books" :key="book" v-bind:book = "book"></SelectLivre> <!-- Test d'affichage des noms de livres récupérés depuis App.vue -->
+              <SelectLivre v-for="book in books" :key="book" v-bind:book = "book" @update="updateNbBooks"></SelectLivre> <!-- Test d'affichage des noms de livres récupérés depuis App.vue -->
           </ul>
         </div>
       </div>
@@ -19,7 +19,15 @@ export default {
   name: "Configuration",
   components: {SelectLivre},
   props:['books'], //Sert à récupérer books (booksPresent) donnés par App.vue
-
+  methods: {
+    updateNbBooks(value) {
+      if(value) {
+        this.$emit('update', 1);
+      } else {
+        this.$emit('update', -1);
+      }
+    }
+  }
 }
 
 </script>

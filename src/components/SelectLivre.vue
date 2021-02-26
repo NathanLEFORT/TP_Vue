@@ -2,7 +2,7 @@
   <li class="list-group-item">
     <div class="row">
       <div class="col-1">
-        <input class="form-check-input" v-model="isSelect" type="checkbox" v-on:click="setSelect()"/>
+        <input class="form-check-input" v-model="isSelect" type="checkbox" v-on:click="setSelect"/>
       </div>
       <div class="col-11">{{ this.book }}</div>
     </div>
@@ -15,7 +15,7 @@ export default {
   props:['book'],
   data() {
     return {
-      isSelect: false
+      isSelect: false,
     }
   },
   mounted() {
@@ -31,6 +31,10 @@ export default {
       this.$parent.$parent.getBooks();
       this.$parent.$parent.getSpellsFromBooks();
       this.$parent.$parent.getSpells(50,1);
+      this.updateNbBooks();
+    },
+    updateNbBooks() {
+      this.$emit('update', !this.isSelect);
     }
   }
 }

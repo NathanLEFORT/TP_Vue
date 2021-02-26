@@ -4,9 +4,9 @@
       <div class="card-header">Stats</div>
       <div class="card-body">
         <ul>
-          <li>Nombre de sorts : {{nbSorts}}</li>
-          <li>Nombre de livres : {{nbLivres}}</li>
-          <li>Nombre de sorts moyen : {{nbMoySorts}}</li>
+          <li>Nombre de sorts : {{this.nbBooks}}</li>
+          <li>Nombre de livres : {{this.nbSpells}}</li>
+          <li>Nombre de sorts moyen :</li>
         </ul>
       </div>
     </div>
@@ -16,19 +16,7 @@
 <script>
 export default {
   name: "Stats",
-  props : ['utils'],
-  data() {
-    return {
-      nbSorts : 0,
-      nbLivres : 0,
-      nbMoySorts : 0
-    }
-  },
-  mounted() {
-    this.nbSorts = this.utils.length;
-    this.nbLivres = 10;
-    this.nbMoySorts = this.nbSorts/this.nbLivres;
-  }
+  props: ['nbBooks', 'nbSpells']
 }
 </script>
 

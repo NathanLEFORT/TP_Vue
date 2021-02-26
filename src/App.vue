@@ -5,14 +5,13 @@
         <NavBar></NavBar>
       </div>
       <div class="col-11">
-        <Configuration v-if="this.isConfiguration" v-bind:books="booksPresent"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
+        <Configuration v-if="this.isConfiguration" v-bind:books="booksPresent" @update="UpdateNbBooks"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
         <Recherche v-else-if="this.isSearch" v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable"/>
-        <Stats v-else-if="this.isStats" v-bind:utils="sortTable"/>
+        <Stats v-else-if="this.isStats" :nbBooks="nbBooksSelected" :nbSpells="nbSpellsSelected"/>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import Configuration from "@/components/Configuration";
@@ -35,7 +34,9 @@ export default {
       page : 1,
       isConfiguration: true,
       isSearch: false,
-      isStats: false
+      isStats: false,
+      nbSpellsSelected: 0,
+      nbBooksSelected: 0
     }
   },
   mounted() { // Seul endroit où est censés executer du JS
@@ -126,17 +127,20 @@ export default {
       this.sortTable.forEach(spell => {
         if (sessionStorage.getItem(spell[0]) != null) this.spells.push(spell); //Garde les sorts uniquements des livres selectionnés
       });
+      this.nbSpellsSelected = this.spells.length;
     },
 
     getBooks(){
       this.sortTable.forEach(spell => {
         if (!this.booksPresent.includes(spell[0])) this.booksPresent.push(spell[0]); //Garde les sorts uniquements des livres selectionnés
       });
+    },
+
+    UpdateNbBooks(value) {
+      this.nbBooksSelected = this.nbBooksSelected + value;
     }
   }
 }
-
-
 </script>
 
 <style>
