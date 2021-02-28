@@ -97,6 +97,8 @@ export default {
       return filteredSpells;
     },
 
+    // If a class is specified in the filters, compare Class filter to spell class, and spell level for given
+    // Class to Level filter (if defined)
     verifySpellClassAndLevel(spellClass, classes, level){
       let found = false;
       spellClass.forEach(double =>{
@@ -107,6 +109,7 @@ export default {
       return found;
     },
 
+    // If no class is specified in the filters, compare Level filter to all possible Levels of the spell
     verifySpellLevel(spellClass, level){
       let spellLevel = false;
       spellClass.forEach(double =>{
@@ -117,6 +120,7 @@ export default {
       return spellLevel;
     },
 
+    // Recover spells only from books selected in Configuration tab
     getSpellsFromBooks(){
       this.spells = [];
       this.sortTable.forEach(spell => {

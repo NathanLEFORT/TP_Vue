@@ -39,6 +39,7 @@ export default {
   mounted() {
     document.querySelector('#resultsSize').value = this.size;
 
+    // Get lists of classes, schools and branches for filters
     this.spells.forEach(spell => {
       if(this.spellsClasses.indexOf(spell[4][0][0]) === -1) {
         this.spellsClasses.push(spell[4][0][0]);
@@ -54,22 +55,26 @@ export default {
     })
   },
   methods : {
-    getSpells(page=0){
+    getSpells(page=1){
       this.$emit('getSpells', this.size, page);
     },
 
+    // Used to filter spells according to the 5 filters (Name, level, class, school and branch)
     getFilteredSpells(filters){
       this.$emit('getSpells', this.size, 1, filters);
     },
 
+    // Called to switch from spell list to spell details
     showSpell(spell){
       this.selectedSpell=spell;
       this.isSpellList=false;
     },
 
+    // Called to switch from spell details view to spell list view
     showList(){
       this.isSpellList=true;
     },
+
     updateSize(size) {
       this.size = size;
     }
