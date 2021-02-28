@@ -5,7 +5,7 @@
         <div class="card-body">
           <ul class="list-group">
               <!-- key est nécessaire avec un v-for, pas donné dans son cours -->
-              <SelectLivre v-for="book in books" :key="book" v-bind:book = "book" @update="updateNbBooks"></SelectLivre> <!-- Test d'affichage des noms de livres récupérés depuis App.vue -->
+              <SelectBook v-for="book in books" :key="book" v-bind:book = "book" @update="updateNbBooks"></SelectBook> <!-- Test d'affichage des noms de livres récupérés depuis App.vue -->
           </ul>
         </div>
       </div>
@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import SelectLivre from "@/components/SelectLivre";
+import SelectBook from "@/components/SelectBook";
 
 export default {
   name: "Configuration",
-  components: {SelectLivre},
+  components: {SelectBook},
   props:['books'], //Sert à récupérer books (booksPresent) donnés par App.vue
   methods: {
     updateNbBooks(value) {

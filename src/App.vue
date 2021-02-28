@@ -39,7 +39,7 @@ export default {
       nbBooksSelected: 0
     }
   },
-  mounted() { // Seul endroit où est censés executer du JS
+  mounted() {
     this.getBooks();
     this.getSpellsFromBooks();
     this.getSpells(50,1);
@@ -73,23 +73,23 @@ export default {
         if(classes!=null){
           add = this.verifySpellClassAndLevel(spell[4], classes, level);
         }
-        else if (level!=null && level!=""){
+        else if (level!=null && level!==""){
           add = this.verifySpellLevel(spell[4], level);
         }
 
-        if(add && name!=null && name!=""){
+        if(add && name!=null && name!==""){
           add = spell[1].includes(name);
         }
 
         if(add && school!=null){
-          add = spell[2]==school;
+          add = spell[2]===school;
         }
 
         if(add && branch!=null){
-          add = spell[3]==branch;
+          add = spell[3]===branch;
         }
 
-        if(add==true){ // If all criteria are respected we add the spell to the list
+        if(add===true){ // If all criteria are respected we add the spell to the list
           filteredSpells.push(spell);
         }
       });
@@ -101,12 +101,7 @@ export default {
       let found = false;
       spellClass.forEach(double =>{
         if(double[0]===classes){
-          if(level!=null && level!="" && double[1].toString()!==level.toString()) {
-            found = false;
-          }
-          else {
-            found = true;
-          }
+          found = !(level != null && level !== "" && double[1].toString() !== level.toString());
         }
       });
       return found;
@@ -137,7 +132,10 @@ export default {
     },
 
     UpdateNbBooks(value) {
+      if(sessionStorage.getItem('nbBooksSelected'))
+        this.nbBooksSelected = parseInt(sessionStorage.getItem('nbBooksSelected'));
       this.nbBooksSelected = this.nbBooksSelected + value;
+      sessionStorage.setItem('nbBooksSelected', this.nbBooksSelected);
     }
   }
 }

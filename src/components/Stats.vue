@@ -4,8 +4,8 @@
       <div class="card-header">Stats</div>
       <div class="card-body">
         <ul>
-          <li>Nombre de sorts : {{this.nbSpells}}</li>
-          <li>Nombre de livres : {{this.nbBooks}}</li>
+          <li>Number of spells : {{this.nbSpells}}</li>
+          <li>Number of books : {{this.nbBooks}}</li>
         </ul>
       </div>
     </div>
