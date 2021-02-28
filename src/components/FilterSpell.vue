@@ -4,8 +4,8 @@
       <div class="card">
         <div class="card-header">Search</div>
         <div class="card-body">
-          <div class="row"><TextLineFilter v-bind:name="'Name'" v-bind:index="0"></TextLineFilter></div>
-          <div class="row"><TextLineFilter v-bind:name="'Level'" v-bind:index="1"></TextLineFilter></div>
+          <div class="row"><TextLineFilter v-bind:name="'Name'" v-bind:index="0" @modifyFilter="modifyFilter"></TextLineFilter></div>
+          <div class="row"><TextLineFilter v-bind:name="'Level'" v-bind:index="1" @modifyFilter="modifyFilter"></TextLineFilter></div>
           <div class="row"><SelectLineFilter v-bind:name="'Class'" v-bind:values="spellsClasses" v-bind:index="2" @modifyFilter="modifyFilter"></SelectLineFilter></div>
           <div class="row"><SelectLineFilter v-bind:name="'School'" v-bind:values="spellsSchools" v-bind:index="3" @modifyFilter="modifyFilter"></SelectLineFilter></div>
           <div class="row"><SelectLineFilter v-bind:name="'Branch'" v-bind:values="spellsBranches" v-bind:index="4" @modifyFilter="modifyFilter"></SelectLineFilter></div>
