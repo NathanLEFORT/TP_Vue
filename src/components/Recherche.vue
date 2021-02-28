@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class = row>
-      <div class="col-9">
+      <div class="col-11">
         <Table v-bind:sorts="utils" v-if="this.isSpellList"></Table>
         <SpellCard v-else v-bind:spell="selectedSpell"></SpellCard>
       </div>
@@ -71,6 +71,9 @@ export default {
 
     showList(){
       this.isSpellList=true;
+    },
+    updateSize(size) {
+      this.size = size;
     }
   }
 }

@@ -4,9 +4,8 @@
       <div class="card-header">Stats</div>
       <div class="card-body">
         <ul>
-          <li>Nombre de sorts : {{this.nbBooks}}</li>
-          <li>Nombre de livres : {{this.nbSpells}}</li>
-          <li>Nombre de sorts moyen :</li>
+          <li>Nombre de sorts : {{this.nbSpells}}</li>
+          <li>Nombre de livres : {{this.nbBooks}}</li>
         </ul>
       </div>
     </div>
@@ -21,5 +20,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

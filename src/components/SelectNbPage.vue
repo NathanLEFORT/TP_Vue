@@ -1,6 +1,7 @@
 <template>
   <div class="col">
     <select class="form-select" id="resultsSize" v-model="selectedSize" v-on:change="getSpells(1)">
+      <option value='10'>10</option>
       <option value='50'>50</option>
       <option value='100'>100</option>
       <option value='500'>500</option>
