@@ -21,8 +21,10 @@ name: "SelectNbPage",
   },
   methods: {
     getSpells(page){
-      this.$parent.updateSize(this.selectedSize);
-      this.$parent.getSpells(page);
+      // this.$parent.updateSize(this.selectedSize);
+      this.$emit('updateSize', this.selectedSize);
+      // this.$parent.getSpells(page);
+      this.$emit('getSpells', page);
     }
   }
 }

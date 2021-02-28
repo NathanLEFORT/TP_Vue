@@ -30,7 +30,8 @@ export default {
   methods: {
     modifyFilter(index, value) {
       this.filters[index] = value;
-      this.$parent.getFilteredSpells(this.filters);
+      // this.$parent.getFilteredSpells(this.filters);
+      this.$emit('getFilteredSpells', this.filters);
     }
   }
 }

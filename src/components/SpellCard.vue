@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="card-header" v-on:click="close()">{{spell[1]}}</div>
+    <div class="card-header" v-on:click="close()">{{spell[1]}} - Click to close</div>
     <div class="card-body">
       <div class="row"><p><b>School : </b>{{spell[2]}}</p></div>
       <div class="row"><p><b>Branches : </b>{{spell[3].join(", ")}}</p></div>

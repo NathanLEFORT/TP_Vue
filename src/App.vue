@@ -6,7 +6,7 @@
       </div>
       <div class="col-11">
         <Configuration v-if="this.isConfiguration" v-bind:books="booksPresent" @update="UpdateNbBooks"/> <!-- v-bind est utilisé pour passer booksPresent à notre composant, sous le nom books -->
-        <Recherche v-else-if="this.isSearch" v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable"/>
+        <Recherche v-else-if="this.isSearch" v-bind:utils="spellsKept" v-bind:nbPages="nbPages" v-bind:spells="sortTable" @getSpells="getSpells"/>
         <Stats v-else-if="this.isStats" :nbBooks="nbBooksSelected" :nbSpells="nbSpellsSelected"/>
       </div>
     </div>
@@ -86,7 +86,7 @@ export default {
         }
 
         if(add && branch!=null){
-          add = spell[3]===branch;
+          add = spell[3]==branch;
         }
 
         if(add===true){ // If all criteria are respected we add the spell to the list
@@ -110,7 +110,7 @@ export default {
     verifySpellLevel(spellClass, level){
       let spellLevel = false;
       spellClass.forEach(double =>{
-        if(double[1]===level) {
+        if(double[1]==level) {
           spellLevel = true;
         }
       });

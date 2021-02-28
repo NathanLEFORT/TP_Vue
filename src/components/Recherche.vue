@@ -1,8 +1,8 @@
 <template>
   <div>
-    <FilterSpell v-bind:spellsClasses="spellsClasses" v-bind:spellsSchools="spellsSchools" v-bind:spellsBranches="spellsBranches"></FilterSpell>
+    <FilterSpell v-bind:spellsClasses="spellsClasses" v-bind:spellsSchools="spellsSchools" v-bind:spellsBranches="spellsBranches" @getFilteredSpells="getFilteredSpells"></FilterSpell>
     <div class="row p-2">
-      <SelectNbPage v-bind:size="this.size"></SelectNbPage>
+      <SelectNbPage v-bind:size="this.size" @updateSize="updateSize" @getSpells="getSpells"></SelectNbPage>
       <div class="col-9">
         <div class="btn-group" role="group">
           <button class="btn btn-primary" v-for="page in (nbPages)" :key="page"><a v-on:click="getSpells(page)" >{{page}}.</a></button>
@@ -57,11 +57,13 @@ export default {
   },
   methods : {
     getSpells(page=0){
-      this.$parent.getSpells(this.size, page);
+      //this.$parent.getSpells(this.size, page);
+      this.$emit('getSpells', this.size, page);
     },
 
     getFilteredSpells(filters){
-      this.$parent.getSpells(this.size, 1, filters);
+      //this.$parent.getSpells(this.size, 1, filters);
+      this.$emit('getSpells', this.size, 1, filters);
     },
 
     showSpell(spell){
