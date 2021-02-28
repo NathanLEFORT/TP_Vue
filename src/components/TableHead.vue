@@ -1,11 +1,11 @@
 <template>
   <thead>
     <tr>
-      <th>Nom du sort</th> <!-- Nom du sort -->
-      <th>Ecole de magie</th> <!-- Ecole -->
-      <th>Descripteurs</th> <!-- Descripteurs -->
-      <th>Classes et niveaux</th> <!-- Classes & Niveaux -->
-      <th>Composants</th> <!-- Composants -->
+      <th>Spell name</th> <!-- Nom du sort -->
+      <th>School</th> <!-- Ecole -->
+      <th>Descriptors</th> <!-- Descripteurs -->
+      <th>Classes and Levels</th> <!-- Classes & Niveaux -->
+      <th>Components</th> <!-- Composants -->
       <th>More...</th> <!-- Action -->
     </tr>
   </thead>
