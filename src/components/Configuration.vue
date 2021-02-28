@@ -21,6 +21,7 @@ export default {
   props:['books'], //Sert à récupérer books (booksPresent) donnés par App.vue
   methods: {
     updateNbBooks(value) {
+      // Trigger the update event on the upper
       if(value) {
         this.$emit('update', 1);
       } else {

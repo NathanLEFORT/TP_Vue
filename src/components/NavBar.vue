@@ -12,17 +12,17 @@
 export default {
   name: "NavBar",
   methods: {
-    enableConfiguration() {
+    enableConfiguration() { // Page display when his variable is true
       this.$parent.isConfiguration = true;
       this.$parent.isSearch = false;
       this.$parent.isStats = false;
     },
-    enableSearch() {
+    enableSearch() { // Page display when his variable is true
       this.$parent.isConfiguration = false;
       this.$parent.isSearch = true;
       this.$parent.isStats = false;
     },
-    enableStats() {
+    enableStats() { // Page display when his variable is true
       this.$parent.isConfiguration = false;
       this.$parent.isSearch = false;
       this.$parent.isStats = true;

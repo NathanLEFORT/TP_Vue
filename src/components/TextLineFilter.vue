@@ -20,7 +20,7 @@ name: "TextLineFilter",
   },
   methods : {
     update(){
-      this.$parent.modifyFilter(this.index, this.filter);
+      this.$emit('modifyFilter', this.index, this.filter);
     }
   }
 }

@@ -27,10 +27,10 @@ export default {
   methods: {
     resetFilter() {
       this.filter = null;
-      this.$parent.modifyFilter(this.index, this.filter);
+      this.modifyFilter();
     },
     modifyFilter() {
-      this.$parent.modifyFilter(this.index, this.filter);
+      this.$emit('modifyFilter', this.index, this.filter);
     }
   }
 }

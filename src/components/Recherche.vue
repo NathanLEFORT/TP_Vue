@@ -9,12 +9,10 @@
         </div>
       </div>
     </div>
-    <div class = row>
-      <div class="col-11">
+    <div class = row><div class="col-11">
         <Table v-bind:sorts="utils" v-if="this.isSpellList"></Table>
         <SpellCard v-else v-bind:spell="selectedSpell"></SpellCard>
-      </div>
-    </div>
+    </div></div>
   </div>
 </template>
 
@@ -57,12 +55,10 @@ export default {
   },
   methods : {
     getSpells(page=0){
-      //this.$parent.getSpells(this.size, page);
       this.$emit('getSpells', this.size, page);
     },
 
     getFilteredSpells(filters){
-      //this.$parent.getSpells(this.size, 1, filters);
       this.$emit('getSpells', this.size, 1, filters);
     },
 

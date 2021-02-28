@@ -125,7 +125,7 @@ export default {
       this.nbSpellsSelected = this.spells.length;
     },
 
-    getBooks(){
+    getBooks() {
       this.sortTable.forEach(spell => {
         if (!this.booksPresent.includes(spell[0])) this.booksPresent.push(spell[0]); //Garde les sorts uniquements des livres selectionnés
       });
