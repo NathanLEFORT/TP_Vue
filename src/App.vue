@@ -36,7 +36,7 @@ export default {
       isSearch: false,
       isStats: false,
       nbSpellsSelected: 0,
-      nbBooksSelected: 0
+      nbBooksSelected: sessionStorage.getItem('nbBooksSelected')
     }
   },
   mounted() {
