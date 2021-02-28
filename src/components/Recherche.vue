@@ -9,7 +9,12 @@
         </div>
       </div>
     </div>
-    <Table v-bind:sorts="utils"/>
+    <div class = row>
+      <div class="col-9">
+        <Table v-bind:sorts="utils" v-if="this.isSpellList"></Table>
+        <SpellCard v-else v-bind:spell="selectedSpell"></SpellCard>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,16 +22,19 @@
 import Table from "@/components/Table";
 import FilterSpell from "@/components/FilterSpell";
 import SelectNbPage from "@/components/SelectNbPage";
+import SpellCard from "@/components/SpellCard";
 export default {
   name: "Recherche",
   props : ['utils','nbPages', 'spells'],
-  components : {SelectNbPage, FilterSpell, Table},
+  components : {SelectNbPage, FilterSpell, Table, SpellCard},
   data(){
     return{
       size : '50',
       spellsClasses: [],
       spellsSchools: [],
-      spellsBranches: []
+      spellsBranches: [],
+      selectedSpell: [],
+      isSpellList: true
     }
   },
 
@@ -54,6 +62,15 @@ export default {
 
     getFilteredSpells(filters){
       this.$parent.getSpells(this.size, 1, filters);
+    },
+
+    showSpell(spell){
+      this.selectedSpell=spell;
+      this.isSpellList=false;
+    },
+
+    showList(){
+      this.isSpellList=true;
     }
   }
 }
